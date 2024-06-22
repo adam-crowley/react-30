@@ -1,33 +1,93 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useForm, SubmitHandler } from 'react-hook-form'
+
 import './App.css'
 
+type IDInputs = {
+  firstName: string
+  collegeName: string
+  locationName: string
+}
+
 function App() {
-  const [count, setCount] = useState(0)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IDInputs>()
+
+  const onSubmit: SubmitHandler<IDInputs> = (data) => {
+    console.log(data)
+  }
 
   return (
     <>
+      <header>
+        <h1>ID Card generator</h1>
+      </header>
+
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <div>
+          <h2>Input form</h2>
+        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div>
+            <label>Enter Name:</label>
+            <input
+              id="firstName"
+              {...register('firstName', { required: 'Name is required' })}
+            />
+          </div>
+          <div>
+            <label>Enter College Name:</label>
+            <input
+              id="collegeName"
+              {...register('collegeName', {
+                required: 'College Name is required',
+              })}
+            />
+          </div>
+          <div>
+            <label>Enter Location:</label>
+            <input
+              id="locationName"
+              {...register('locationName', {
+                required: 'Location is required',
+              })}
+            />
+          </div>
+          <button type="submit">Generate Card</button>
+        </form>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+
+      <div>
+        <div>
+          <h3>Generated Card</h3>
+        </div>
+        <div>
+          <div>
+            <div>
+              <div>
+                <span>Name:</span>
+                <span></span>
+              </div>
+              <div>
+                <span>College Name:</span>
+                <span></span>
+              </div>
+              <div>
+                <span>Location:</span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {/* Display all errors in one div */}
+      <div className="errors">
+        {Object.values(errors).map((error, index) => (
+          <p key={index}>{error.message}</p>
+        ))}
+      </div>
     </>
   )
 }
