@@ -1,3 +1,6 @@
+/* ==========================================================================
+	 Base Styles
+	 ========================================================================== */
 :root {
   font-family: Arial, Helvetica, sans-serif;
   font-synthesis: none;
@@ -6,8 +9,88 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.generated-card {
-  opacity: 0;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.root {
+  overflow: hidden;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+	 Forms
+	 ========================================================================== */
+.form label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.form input {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form input:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.form__group {
+  margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+	 Card generator
+	 ========================================================================== */
+.card-generator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(0, 0%, 10%);
+  min-height: 100vh;
+}
+
+.card-generator__container {
+  width: 48rem;
+}
+
+.card-generator__columns {
+  display: flex;
+  background-color: hsla(0, 0%, 100%, 0.08);
+  padding: 1rem;
+}
+
+.card-generator__column {
+  width: 50%;
+  padding: 1rem;
 }
 
 /*# sourceMappingURL=App.css.map */
