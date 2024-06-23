@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { motion } from 'framer-motion'
 
 import './App.css'
 
@@ -9,6 +11,9 @@ type IDInputs = {
 }
 
 function App() {
+  const [formData, setFormData] = useState<IDInputs | null>(null)
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
+
   const {
     register,
     handleSubmit,
@@ -17,6 +22,8 @@ function App() {
 
   const onSubmit: SubmitHandler<IDInputs> = (data) => {
     console.log(data)
+    setFormData(data)
+    setIsSubmitted(true)
   }
 
   return (
@@ -63,26 +70,32 @@ function App() {
         <div>
           <h3>Generated Card</h3>
         </div>
-        <div>
-          <div>
+
+        {isSubmitted && formData && (
+          <motion.div
+            animate={{ opacity: 1 }}
+            transition={{ ease: 'easeInOut', duration: 0.4 }}
+            className="generated-card"
+          >
             <div>
               <div>
-                <span>Name:</span>
-                <span></span>
-              </div>
-              <div>
-                <span>College Name:</span>
-                <span></span>
-              </div>
-              <div>
-                <span>Location:</span>
-                <span></span>
+                <div>
+                  <span>Name: </span>
+                  <span>{formData.firstName}</span>
+                </div>
+                <div>
+                  <span>College Name:</span>
+                  <span>{formData.collegeName}</span>
+                </div>
+                <div>
+                  <span>Location:</span>
+                  <span>{formData.locationName}</span>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        )}
       </div>
-      {/* Display all errors in one div */}
       <div className="errors">
         {Object.values(errors).map((error, index) => (
           <p key={index}>{error.message}</p>
