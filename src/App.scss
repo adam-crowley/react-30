@@ -85,10 +85,10 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  color: var(--black);
   background-color: var(--white);
   background-clip: padding-box;
-  border: 1px solid var(--yellow);
+  border: 1px solid var(--white);
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -111,11 +111,9 @@ body {
 	 ========================================================================== */ 
 
 .card-generator {
-  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 }
 .card-generator__container {
   width: 48rem;
@@ -130,10 +128,10 @@ body {
   width: 50%;
   padding: 1rem;
 }
-.card-generator h1 {
+.card-generator h2 {
   text-align: center;
 }
-.card-generator h2 {
+.card-generator h3 {
   color: var(--light-blue);
 }
 .card-generator__errors {
@@ -151,8 +149,10 @@ body {
   aspect-ratio: 16/9;
   padding: 1rem;
   border-radius: 0.5rem;
-  background-color: var(--white);
-  color: var(--black)
+  border: solid 0.15rem var(--white);
+  background: var(--white);
+  background: linear-gradient(118deg, rgba(255,255,255,1) 0%, rgba(177,177,177,1) 100%); 
+  color: var(--black);
 }
 .card-generator__group {
   margin-bottom: 0.5rem;
@@ -165,4 +165,37 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* ==========================================================================
+	 Clicker
+	 ========================================================================== */
+
+.clicker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.clicker h2 {
+  color: var(--white);
+  text-align: center;
+}
+.clicker__container{
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  background-color: var(--white);
+}
+.clicker__screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 16/9;
+}
+.clicker__buttons {
+  display: flex;
+}
+.clicker__buttons button {
+  width: 33.333333%;
+  height: 5rem;
 }

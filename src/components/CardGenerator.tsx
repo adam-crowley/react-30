@@ -35,11 +35,11 @@ function CardGenerator() {
     <div className="card-generator">
       <div className="card-generator__container">
         <header>
-          <h1>ID Card generator</h1>
+          <h2>ID Card generator</h2>
         </header>
         <div className="card-generator__columns">
           <div className="card-generator__column">
-            <h2>Input form</h2>
+            <h3>Input form</h3>
             <form onSubmit={handleSubmit(onSubmit)} className="form">
               <div className="form__group">
                 <label>Enter Name:</label>
@@ -76,7 +76,7 @@ function CardGenerator() {
 
           <div className="card-generator__column">
             <div>
-              <h2>Generated Card</h2>
+              <h3>Generated Card</h3>
             </div>
             {isLoading ? (
               <RotatingTriangles
