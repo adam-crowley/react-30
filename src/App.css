@@ -137,11 +137,16 @@ body {
 }
 
 .card-generator h2 {
+  color: var(--white);
   text-align: center;
 }
 
 .card-generator h3 {
   color: var(--light-blue);
+}
+
+.card-generator label {
+  color: var(--white);
 }
 
 .card-generator__errors {
@@ -203,19 +208,44 @@ body {
 }
 
 .clicker__screen {
+  font-size: 5.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
   aspect-ratio: 16/9;
+  background: var(--white);
+  background: linear-gradient(118deg, rgb(255, 255, 255) 0%, rgba(177, 177, 177, 0.25) 100%);
 }
 
 .clicker__buttons {
   display: flex;
 }
 
-.clicker__buttons button {
+.clicker__button {
+  cursor: pointer;
   width: 33.333333%;
   height: 5rem;
+  border: 0;
+  border-radius: 0;
+}
+
+.clicker__button--minus {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--white);
+  background-color: var(--light-blue);
+}
+
+.clicker__button--reset {
+  font-size: 1.125rem;
+  background-color: var(--yellow);
+}
+
+.clicker__button--plus {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--white);
+  background-color: var(--purple);
 }
 
 /*# sourceMappingURL=App.css.map */

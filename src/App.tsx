@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <div className="page">
-        {/* <CardGenerator /> */}
+        <CardGenerator />
         <Clicker />
       </div>
     </>

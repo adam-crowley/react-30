@@ -9,11 +9,24 @@ function Clicker() {
       <div className="clicker__container">
         <div className="clicker__screen">{count}</div>
         <div className="clicker__buttons">
-          <button onClick={() => (count === 0 ? null : setCount(count - 1))}>
+          <button
+            className="clicker__button clicker__button--minus"
+            onClick={() => (count === 0 ? null : setCount(count - 1))}
+          >
             -
           </button>
-          <button onClick={() => setCount(0)}>Reset</button>
-          <button onClick={() => setCount(count + 1)}>+</button>
+          <button
+            className="clicker__button clicker__button--reset"
+            onClick={() => setCount(0)}
+          >
+            Reset
+          </button>
+          <button
+            className="clicker__button clicker__button--plus"
+            onClick={() => setCount(count + 1)}
+          >
+            +
+          </button>
         </div>
       </div>
     </div>
