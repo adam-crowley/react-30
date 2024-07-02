@@ -248,4 +248,33 @@ body {
   background-color: var(--purple);
 }
 
+/* ==========================================================================
+	 Digital clock
+	 ========================================================================== */
+.digital-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.digital-clock h2 {
+  text-align: center;
+  color: var(--white);
+}
+
+.digital-clock__container {
+  border: solid 1px var(--white);
+  border-radius: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25rem;
+  aspect-ratio: 25/9;
+}
+
+.digital-clock__time {
+  color: var(--light-blue);
+  font-size: 5.25rem;
+}
+
 /*# sourceMappingURL=App.css.map */
