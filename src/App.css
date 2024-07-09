@@ -58,6 +58,9 @@ body {
 .button.button--blue {
   background-color: var(--light-blue);
 }
+.button.button--yellow {
+  background-color: var(--yellow);
+}
 
 /* ==========================================================================
 	 Typography
@@ -292,8 +295,12 @@ body {
 }
 
 .user-feed__container {
+  position: relative;
   display: flex;
-  width: 30rem;
+  align-items: center;
+  justify-content: space-between;
+  width: 40rem;
+  margin-bottom: 3rem;
 }
 
 .user-feed__content {
@@ -301,8 +308,56 @@ body {
 }
 
 .user-feed__user {
+  width: 30rem;
+  aspect-ratio: 16/9;
   background: var(--white);
   background: linear-gradient(118deg, rgb(255, 255, 255) 0%, rgb(177, 177, 177) 100%);
+}
+
+.user-feed__img {
+  aspect-ratio: 1/1;
+  width: 6rem;
+}
+
+.user-feed__btn {
+  cursor: pointer;
+  background-image: url(img/arrow.svg);
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: center;
+  background-color: transparent;
+  border: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.user-feed__btn--prev {
+  transform: rotate(180deg);
+}
+
+.user-feed__progress {
+  display: flex;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  bottom: -2.3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  list-style-type: none;
+}
+
+.user-feed__progress button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 0;
+  color: var(--white);
+  background-color: transparent;
+  line-height: 0;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+.user-feed__progress button.selected {
+  color: var(--light-blue);
 }
 
 /*# sourceMappingURL=App.css.map */
