@@ -408,4 +408,23 @@ p.user-feed__name {
   padding: 0 2rem 0 1rem;
 }
 
+/* ==========================================================================
+	 Image gallery
+	 ========================================================================== */
+.image-gallery h2 {
+  color: var(--white);
+  text-align: center;
+}
+
+.image-gallery__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 30rem;
+  margin: 0 auto;
+}
+
+.image-gallery__img {
+  max-width: 100%;
+}
+
 /*# sourceMappingURL=App.css.map */
