@@ -68,8 +68,8 @@ function CardGenerator() {
                   })}
                 />
               </div>
-              <button className="button button--blue" type="submit">
-                Generate Card
+              <button className="button button--yellow" type="submit">
+                Generate card
               </button>
             </form>
           </div>

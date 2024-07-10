@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { motion, AnimatePresence } from 'framer-motion'
 import { RotatingTriangles } from 'react-loader-spinner'
 
 import { UserData } from '../../models/userfeed'
@@ -7,7 +8,7 @@ import { UserData } from '../../models/userfeed'
 function UserFeed() {
   const [userData, setUserData] = useState<UserData[]>([])
   const [index, setIndex] = useState(0)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   async function getUsers() {
     try {
@@ -45,51 +46,81 @@ function UserFeed() {
           className="user-feed__btn user-feed__btn--prev"
           onClick={previousUser}
         ></button>
-        {userData.length && (
-          <>
-            {isLoading ? (
-              <RotatingTriangles
-                visible={true}
-                height="80"
-                width="80"
-                colors={[
-                  'rgb(255, 204, 102)',
-                  'rgb(0, 187, 255)',
-                  'rgb(187, 136, 255)',
-                ]}
-                ariaLabel="rotating-triangles-loading"
-                wrapperStyle={{}}
-                wrapperClass="card-generator__loading"
-              />
-            ) : null}
-            <div key={index} className="user-feed__user">
-              <div className="user-feed__top-panel">
-                User:{' '}
-                {`${userData[index].name.title} ${userData[index].name.first} ${userData[index].name.last}`}
-              </div>
-              <div className="user-feed__content">
-                <div className="user-feed__left-col">
-                  <p className="user-feed__name"></p>
-                  <p>Email: {userData[index].email}</p>
-                  <p className="user-feed__time"></p>
-                  <p>Age: {userData[index].dob.age} </p>
-                  <p>Nationality: {userData[index].location.country}</p>
-                  <p>Phone: {userData[index].phone}</p>
-                </div>
-                <div className="user-feed__right-col">
-                  <img
-                    className="user-feed__img"
-                    src={userData[index].picture.large}
-                    alt={`${userData[index].name.title} ${userData[index].name.first} ${userData[index].name.last}`}
-                  />
-                  <p>Address:</p>
-                  <p>{`${userData[index].location.street.number} ${userData[index].location.street.name}`}</p>
-                  <p>{`${userData[index].location.city}, ${userData[index].location.country}, ${userData[index].location.postcode}`}</p>
-                </div>
-              </div>
-            </div>
-          </>
-        )}
+        <div className="user-feed__user-wrapper">
+          {userData.length && (
+            <>
+              {isLoading ? (
+                <RotatingTriangles
+                  visible={true}
+                  height="80"
+                  width="80"
+                  colors={[
+                    'rgb(255, 204, 102)',
+                    'rgb(0, 187, 255)',
+                    'rgb(187, 136, 255)',
+                  ]}
+                  ariaLabel="rotating-triangles-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="card-generator__loading"
+                />
+              ) : (
+                <AnimatePresence>
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ ease: 'easeInOut', duration: 0.4 }}
+                    className="user-feed__user"
+                  >
+                    <div className="user-feed__content">
+                      <div className="user-feed__left-col">
+                        <p className="user-feed__name">
+                          <span className="bold">
+                            {`${userData[index].name.title} ${userData[index].name.first} ${userData[index].name.last}`}
+                          </span>
+                        </p>
+                        <p>
+                          <span className="bold">Email:</span>{' '}
+                          <span className="user-feed__email">
+                            {userData[index].email}
+                          </span>
+                        </p>
+                        <p className="user-feed__time"></p>
+                        <p>
+                          <span className="bold">Age:</span>{' '}
+                          {userData[index].dob.age}{' '}
+                        </p>
+                        <p>
+                          <span className="bold">Nationality:</span>{' '}
+                          {userData[index].location.country}
+                        </p>
+                        <p>
+                          <span className="bold">Phone:</span>{' '}
+                          {userData[index].phone}
+                        </p>
+                      </div>
+                      <div className="user-feed__right-col">
+                        <img
+                          className="user-feed__img"
+                          src={userData[index].picture.large}
+                          alt={`${userData[index].name.title} ${userData[index].name.first} ${userData[index].name.last}`}
+                        />
+                        <div className="user-feed__address">
+                          <p>
+                            <span className="bold">Address:</span>
+                          </p>
+                          <p>{`${userData[index].location.street.number} ${userData[index].location.street.name}`}</p>
+                          <p>{`${userData[index].location.city}, ${userData[index].location.country}, ${userData[index].location.postcode}`}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              )}
+            </>
+          )}
+        </div>
         <button
           className="user-feed__btn user-feed__btn--next"
           onClick={nextUser}

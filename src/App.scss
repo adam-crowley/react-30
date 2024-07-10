@@ -72,6 +72,11 @@ body {
 .bold {
   font-weight: bold;
 }
+p {
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
 
 /* ==========================================================================
 	 Forms
@@ -279,16 +284,42 @@ body {
 }
 .user-feed__content {
   display: flex;
+  padding: 1.5rem 0;
+  align-items: flex-end;
+  height: 100%;
 }
-.user-feed__user {
+.user-feed__content p {
+  margin: 0 0 0.5rem;
+  &:last-child {
+    margin: 0;
+  }
+}
+.user-feed__user-wrapper {
+  position: relative;
   width: 30rem;
   aspect-ratio: 16/9;
+}
+.user-feed__user {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
   background: var(--white);
   background: linear-gradient(118deg, rgba(255,255,255,1) 0%, rgba(177,177,177,1) 100%); 
+  border-radius: 0.5rem;
+  border: solid 0.15rem var(--white);
 }
 .user-feed__img {
   aspect-ratio: 1/1;
   width: 6rem;
+}
+p.user-feed__name {
+  font-size: 1.3125rem;
+  margin-bottom: 1rem;
+}
+.user-feed__email {
+  font-size: 0.875rem;
 }
 .user-feed__btn {
   cursor: pointer;
@@ -326,4 +357,16 @@ body {
   &.selected {
     color: var(--light-blue);
   }
+}
+.user-feed__left-col {
+  width: 55%;
+  padding: 0 1rem 0 2rem;
+}
+.user-feed__right-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 45%;
+  height: 100%;
+  padding: 0 2rem 0 1rem;
 }
