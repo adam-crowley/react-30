@@ -502,4 +502,12 @@ p.user-feed__name {
   color: var(--light-blue);
 }
 
+/* ==========================================================================
+	 Quote generator
+	 ========================================================================== */
+.quote-generator h2 {
+  color: var(--white);
+  text-align: center;
+}
+
 /*# sourceMappingURL=App.css.map */
