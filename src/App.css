@@ -408,6 +408,13 @@ p.user-feed__name {
   padding: 0 2rem 0 1rem;
 }
 
+.user-feed__loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /* ==========================================================================
 	 Image gallery
 	 ========================================================================== */
@@ -444,10 +451,11 @@ p.user-feed__name {
 .image-gallery__img-wrapper {
   position: relative;
   width: 30rem;
-  aspect-ratio: 16/9;
+  aspect-ratio: 14/9;
 }
 
 .image-gallery__img {
+  object-fit: cover;
   max-width: 100%;
   position: absolute;
   top: 0;
@@ -460,6 +468,38 @@ p.user-feed__name {
   position: relative;
   width: 30rem;
   aspect-ratio: 16/9;
+}
+
+.image-gallery__loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.image-gallery__progress {
+  display: flex;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  bottom: -2.3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  list-style-type: none;
+}
+
+.image-gallery__progress button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 0;
+  color: var(--white);
+  background-color: transparent;
+  line-height: 0;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+.image-gallery__progress button.selected {
+  color: var(--light-blue);
 }
 
 /*# sourceMappingURL=App.css.map */

@@ -23,8 +23,8 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "files": [
-    "models/userfeed.ts"
-  ],
-  "include": ["src"]
+  "include": [
+    "models/**/*.ts",
+    "src"
+  ]
 }
