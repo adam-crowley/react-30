@@ -2,7 +2,7 @@ import express from 'express'
 import { join } from 'path'
 import cors from 'cors'
 
-import quotes from '../public/data/quotes.json'
+// import quotes from '../public/data/quotes.json'
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -23,9 +23,9 @@ app.get('/', (req, res) => {
   res.send('Hello world!')
 })
 
-app.get('/quotesList', (req, res) => {
-  res.send({ quotesList: quotes })
-})
+// app.get('/quotesList', (req, res) => {
+//   res.send({ quotesList: quotes })
+// })
 
 app.use(express.static(join(__dirname, './public')))
 

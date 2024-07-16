@@ -1,8 +1,6 @@
 {
   "name": "id-card-generator",
-  "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "start": "node api/index.ts",
@@ -16,12 +14,10 @@
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "framer-motion": "^11.2.11",
-    "nodemon": "^3.1.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.0",
-    "react-loader-spinner": "^6.1.6",
-    "ts-node": "^10.9.2"
+    "react-loader-spinner": "^6.1.6"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
@@ -35,6 +31,8 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
     "typescript": "^5.5.3",
     "vite": "^5.3.1"
   }

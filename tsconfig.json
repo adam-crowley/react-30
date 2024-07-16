@@ -1,11 +1,24 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
+  "ts-node": {
+    "transpileOnly": true
+  },
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "es2016",
+    
+    /* Modules */
+    "module": "commonjs",          
+
+    /* Interop Constraints */
+    "esModuleInterop": true,                       
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    
+    /* Type Checking */
+    "strict": true,
+    "noEmit": true,
+
+    /* Output */
+    "outDir": "../dist"                                /* Skip type checking all .d.ts files. */
+  }
 }
