@@ -13,8 +13,10 @@ function ImageGallery() {
   async function getData() {
     try {
       setIsLoading(true)
-      const response = await axios.get<Photo[]>('https://picsum.photos/v2/list')
-      const data = response.data.slice(0, 10)
+      const response = await axios.get<Photo[]>(
+        'https://picsum.photos/v2/list?&limit=10'
+      )
+      const data = response.data
       setPhotoData(data)
       setIsLoading(false)
     } catch (error) {

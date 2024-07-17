@@ -3,22 +3,14 @@
     "transpileOnly": true
   },
   "compilerOptions": {
-    /* Language and Environment */
+    "jsx": "react-jsx",
     "target": "es2016",
-    
-    /* Modules */
-    "module": "commonjs",          
-
-    /* Interop Constraints */
+    "module": "commonjs",       
+    "resolveJsonModule": true,
     "esModuleInterop": true,                       
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
-    
-    /* Type Checking */
     "strict": true,
-    "noEmit": true,
-
-    /* Output */
-    "outDir": "../dist"                                /* Skip type checking all .d.ts files. */
+    "noEmit": true                              /* Skip type checking all .d.ts files. */
   }
 }
