@@ -6,6 +6,7 @@ import { join } from 'path'
 import cors from 'cors'
 
 import quotes from '../public/data/quotes.json'
+import quotesRoute from './routes'
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -25,6 +26,9 @@ mongoose.connect(process.env.DB_CONNECTION_URL).then(
 app.use(cors())
 app.use(bodyParser.json())
 app.use(express.json())
+app.use(express.static(join(__dirname, './public')))
+
+app.use('/quotes', quotesRoute)
 
 app.get('/', (req, res) => {
   res.send('Hello world!')
@@ -39,8 +43,6 @@ app.get('/randomQuote', (req, res) => {
   const quoteItem = quotes[randomNumber]
   res.send(quoteItem)
 })
-
-app.use(express.static(join(__dirname, './public')))
 
 app.listen(port, () => {
   console.log('Listening on port', port)
