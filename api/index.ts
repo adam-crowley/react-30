@@ -1,6 +1,6 @@
 import express from 'express'
-import mongoose from 'mongoose'
-import dotenv from 'dotenv'
+import { MongoClient } from 'mongodb'
+import { config } from 'dotenv'
 import bodyParser from 'body-parser'
 import { join } from 'path'
 import cors from 'cors'
@@ -11,17 +11,38 @@ import quotesRoute from './routes'
 const app = express()
 const port = process.env.PORT || 3000
 
-dotenv.config()
+config()
+console.log('process.env.DB_CONNECTION_URL', process.env.DB_CONNECTION_URL)
+executeCrudOperations()
 
-mongoose.connect(process.env.DB_CONNECTION_URL).then(
-  () => {
-    console.log('Connected to MongoDB')
-  },
-  (error) => {
-    console.error('Failed to connect to MongoDB', error)
-    process.exit(1)
+export async function connectToCluster(uri) {
+  let mongoClient
+
+  try {
+    mongoClient = new MongoClient(uri)
+    console.log('Connecting to MongoDB Atlas cluster...')
+    await mongoClient.connect()
+    console.log('Successfully connected to MongoDB Atlas!')
+
+    return mongoClient
+  } catch (error) {
+    console.error('Connection to MongoDB Atlas failed!', error)
+    process.exit()
   }
-)
+}
+
+export async function executeCrudOperations() {
+  const uri = process.env.DB_CONNECTION_URL
+  let mongoClient
+
+  try {
+    mongoClient = await connectToCluster(uri)
+    const db = mongoClient.db('react_30')
+    const collection = db.collection('quotes')
+  } finally {
+    await mongoClient.close()
+  }
+}
 
 app.use(cors())
 app.use(bodyParser.json())
