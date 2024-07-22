@@ -7,13 +7,15 @@ const router = express.Router()
 
 // /quotes/list
 router.get('/list', async (req, res) => {
-  const quotesCollection = await getCollection()
-  // const quotesArr = await getAllQuotes(quotesCollection)
-  console.log('quotesCollection', quotesCollection)
-  // console.log('quotesArr', quotesArr)
-  // res.json(quotesCollection)
-  // const quotesObject = await Quotes.find({})
-  // res.json({ result: quotesObject[0].quotes })
+  try {
+    const quotesCollection = await getCollection()
+    const quotesArr = await getAllQuotes(quotesCollection)
+    const quotes = quotesArr.map((item) => item.quote)
+    res.json({ quotes })
+  } catch (error) {
+    console.error('Error fetching quotes:', error)
+    res.status(500).json({ error: 'Internal Server Error' })
+  }
 })
 
 export default router

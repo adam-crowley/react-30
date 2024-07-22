@@ -1,16 +1,17 @@
-import { MongoClient } from 'mongodb'
+import { Collection, MongoClient } from 'mongodb'
+
+let mongoClient: MongoClient
+let quotesCollection: Collection
 
 export async function connectToCluster(uri: string) {
-  let mongoClient
   try {
     mongoClient = new MongoClient(uri)
     console.log('Connecting to MongoDB Atlas cluster...')
     await mongoClient.connect()
     console.log('Successfully connected to MongoDB Atlas!')
-    return mongoClient
   } catch (error) {
     console.error('Connection to MongoDB Atlas failed!', error)
-    process.exit()
+    process.exit(1)
   }
 }
 
@@ -19,14 +20,12 @@ export async function getCollection() {
   if (!uri) {
     throw new Error('DB_CONNECTION_URL is not defined in environment variables')
   }
-  let mongoClient
-
-  try {
-    mongoClient = await connectToCluster(uri)
-    const db = mongoClient.db('react_30')
-    const collection = db.collection('quotes')
-    return collection
-  } finally {
-    await mongoClient.close()
+  if (!mongoClient) {
+    await connectToCluster(uri)
   }
+  if (!quotesCollection) {
+    const db = mongoClient.db('react_30')
+    quotesCollection = db.collection('quotes')
+  }
+  return quotesCollection
 }
