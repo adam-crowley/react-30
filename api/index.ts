@@ -6,24 +6,24 @@ import cors from 'cors'
 
 import quotesRoute from './routes'
 
-const app = express()
+const server = express()
 const port = process.env.PORT || 3000
 
 dotenv.config()
 
-app.use(cors())
-app.use(bodyParser.json())
-app.use(express.json())
-app.use(express.static(join(__dirname, './public')))
+server.use(cors())
+server.use(bodyParser.json())
+server.use(express.json())
+server.use(express.static(join(__dirname, './public')))
 
-app.use('/quotes', quotesRoute)
+server.use('/api/v1/quotes', quotesRoute)
 
-app.get('/', (req, res) => {
+server.get('/', (req, res) => {
   res.send('Hello world!')
 })
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log('Listening on port', port)
 })
 
-export default app
+export default server
