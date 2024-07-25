@@ -468,7 +468,11 @@ p.user-feed__name {
     text-align: center;
    }  
    .quote-generator__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 48rem;
+    aspect-ratio: 38/9;
     margin: 0 auto;
    }
    .quote-generator__blockquote {

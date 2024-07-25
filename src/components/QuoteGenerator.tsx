@@ -36,7 +36,7 @@ function QuoteGenerator() {
             ]}
             ariaLabel="rotating-triangles-loading"
             wrapperStyle={{}}
-            wrapperClass="user-feed__loading"
+            wrapperClass="quote-generator__loading"
           />
         ) : (
           <>
