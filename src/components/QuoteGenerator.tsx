@@ -8,12 +8,16 @@ function QuoteGenerator() {
   const [isLoading, setIsLoading] = useState(true)
 
   async function getData() {
-    setIsLoading(true)
-    const response = await axios.get(
-      'http://localhost:3000/api/v1/quotes/random'
-    )
-    setIsLoading(false)
-    setRandomQuote(response.data.quote)
+    try {
+      setIsLoading(true)
+      const response = await axios.get(
+        'http://localhost:3000/api/v1/quotes/random'
+      )
+      setIsLoading(false)
+      setRandomQuote(response.data.quote)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   useEffect(() => {
