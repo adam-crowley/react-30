@@ -7,8 +7,7 @@ export const fetchRandomQuote = createAsyncThunk(
     const response = await axios.get(
       'http://localhost:3000/api/v1/quotes/random'
     )
-    // const data = await response.json()
-    return response
+    return response.data.quote
   }
 )
 
@@ -17,7 +16,7 @@ const quoteSlice = createSlice({
   initialState: {
     quote: null,
     status: 'idle',
-    error: null,
+    error: null as string | null,
   },
   extraReducers: (builder) => {
     builder
@@ -30,10 +29,10 @@ const quoteSlice = createSlice({
       })
       .addCase(fetchRandomQuote.rejected, (state, action) => {
         state.status = 'failed'
-        state.error = action.error.message
+        state.error = action.error.message || 'An unknown error occurred'
       })
   },
-  reducers: undefined,
+  reducers: {},
 })
 
 export default quoteSlice.reducer

@@ -1,34 +1,28 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { RotatingTriangles } from 'react-loader-spinner'
 
-function QuoteGenerator() {
-  const [randomQuote, setRandomQuote] = useState('')
-  const [isLoading, setIsLoading] = useState(true)
+import { useAppDispatch, useAppSelector } from '../hooks'
+import { fetchRandomQuote } from '../slices/quoteSlice'
 
-  async function getData() {
-    try {
-      setIsLoading(true)
-      const response = await axios.get(
-        'http://localhost:3000/api/v1/quotes/random'
-      )
-      setIsLoading(false)
-      setRandomQuote(response.data.quote)
-    } catch (error) {
-      console.error(error)
-    }
-  }
+function QuoteGenerator() {
+  const dispatch = useAppDispatch()
+  const quote = useAppSelector((state) => state.quote)
+  const status = useAppSelector((state) => state.status)
 
   useEffect(() => {
-    getData()
-  }, [])
+    dispatch(fetchRandomQuote())
+  }, [dispatch])
+
+  function handleFetchQuote() {
+    dispatch(fetchRandomQuote())
+  }
 
   return (
     <div className="quote-generator">
       <h2>Quote Generator</h2>
       <div className="quote-generator__container">
-        {isLoading ? (
+        {status === 'loading' ? (
           <RotatingTriangles
             visible={true}
             height="80"
@@ -52,13 +46,13 @@ function QuoteGenerator() {
                 transition={{ ease: 'easeInOut', duration: 0.4 }}
                 className="quote-generator__blockquote"
               >
-                "{randomQuote}"
+                "{quote}"
               </motion.blockquote>
             </AnimatePresence>
           </>
         )}
       </div>
-      <button className="button button--yellow" onClick={getData}>
+      <button className="button button--yellow" onClick={handleFetchQuote}>
         Generate new quote
       </button>
     </div>
