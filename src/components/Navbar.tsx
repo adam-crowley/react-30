@@ -3,7 +3,10 @@ import { NavLink } from 'react-router-dom'
 function Navbar() {
   return (
     <div className="navbar">
-      <ul>
+      <ul className="navbar__list">
+        <li>
+          <NavLink to="/user-authentication">User authentication</NavLink>
+        </li>
         <li>
           <NavLink to="/quote-generator">Quote generator</NavLink>
         </li>

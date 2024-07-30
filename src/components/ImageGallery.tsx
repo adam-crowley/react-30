@@ -9,6 +9,7 @@ function ImageGallery() {
   const [photoData, setPhotoData] = useState<Photo[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const [cachedImages, setCachedImages] = useState<string[]>([])
 
   async function getData() {
     try {
@@ -18,6 +19,18 @@ function ImageGallery() {
       )
       const data = response.data
       setPhotoData(data)
+
+      const promises = data.map((photo) => {
+        const imgUrl = `${photo.download_url}`
+        return new Promise<string>((resolve) => {
+          const img = new Image()
+          img.src = imgUrl
+          img.onload = () => resolve(imgUrl)
+        })
+      })
+
+      const images = await Promise.all(promises)
+      setCachedImages(images)
       setIsLoading(false)
     } catch (error) {
       console.error(error)
@@ -73,7 +86,7 @@ function ImageGallery() {
                   exit={{ opacity: 0 }}
                   transition={{ ease: 'easeInOut', duration: 0.4 }}
                   className="image-gallery__img"
-                  src={photoData[currentIndex].download_url}
+                  src={cachedImages[currentIndex]}
                 ></motion.img>
               </AnimatePresence>
             )}

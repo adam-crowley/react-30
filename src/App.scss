@@ -28,6 +28,11 @@ body {
   flex-direction: row;
   min-height: 100vh;
 }
+.page__content {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+}
 .button {
   display: inline-block;
   font-weight: 400;
@@ -115,13 +120,39 @@ p {
 }
 
 /* ==========================================================================
+	 Navbar
+	 ========================================================================== */ 
+
+.navbar {
+  width: 15rem;
+  padding: 2rem;
+}
+.navbar__list {
+  margin: 0;
+  padding: 0;
+}
+.navbar__list a {
+  font-weight: bold;
+}
+.navbar__list li {
+  list-style-type: none;
+  margin-bottom: 0.5rem;
+}
+.navbar__list a {
+  color: var(--light-blue);
+  text-decoration: none;
+  &.active {
+    color: var(--white)
+  }
+}
+
+/* ==========================================================================
 	 Card generator
 	 ========================================================================== */ 
 
 .card-generator {
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 .card-generator__container {
   width: 48rem;
@@ -479,4 +510,12 @@ p.user-feed__name {
     font-size: 24px;
     font-style: italic;
     color: var(--white)
+   }
+
+   /* ==========================================================================
+	 User Authentication
+	 ========================================================================== */
+
+   .user-auth h2 {
+    color: var(--white);
    }
