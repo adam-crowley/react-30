@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import rootReducer from './slices/quoteSlice'
+import quoteReducer from './slices/quoteSlice'
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: quoteReducer,
 })
 
 export type RootState = ReturnType<typeof store.getState>
