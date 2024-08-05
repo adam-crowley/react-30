@@ -1,14 +1,13 @@
 import express from 'express'
-
-import { getAllQuotes, getRandomQuote } from './db'
-import { getCollection } from './connection'
-
 const router = express.Router()
+
+import { getAllQuotes, getRandomQuote } from '../db'
+import { getCollection } from '../connection'
 
 // /quotes/list
 router.get('/list', async (req, res) => {
   try {
-    const quotesCollection = await getCollection()
+    const quotesCollection = await getCollection('react_30', 'quotes')
     const quotesArr = await getAllQuotes(quotesCollection)
     const quotes = quotesArr.map((item) => item.quote)
     res.json({ quotes })
@@ -21,7 +20,7 @@ router.get('/list', async (req, res) => {
 // /quotes/random
 router.get('/random', async (req, res) => {
   try {
-    const quotesCollection = await getCollection()
+    const quotesCollection = await getCollection('react_30', 'quotes')
     const quote = await getRandomQuote(quotesCollection)
     res.json({ quote })
   } catch (error) {
