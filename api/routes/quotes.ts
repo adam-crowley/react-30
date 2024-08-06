@@ -1,16 +1,14 @@
 import express from 'express'
 const router = express.Router()
 
-import { getAllQuotes, getRandomQuote } from '../db'
-import { getCollection } from '../connection'
+import Quotes from '../models/quotes'
 
 // /quotes/list
 router.get('/list', async (req, res) => {
   try {
-    const quotesCollection = await getCollection('react_30', 'quotes')
-    const quotesArr = await getAllQuotes(quotesCollection)
-    const quotes = quotesArr.map((item) => item.quote)
-    res.json({ quotes })
+    const quotesObject = await Quotes.find({})
+    console.log('quotesObject', quotesObject)
+    res.json({ result: quotesObject[0].quotes })
   } catch (error) {
     console.error('Error fetching quotes:', error)
     res.status(500).json({ error: 'Internal Server Error' })
@@ -20,9 +18,10 @@ router.get('/list', async (req, res) => {
 // /quotes/random
 router.get('/random', async (req, res) => {
   try {
-    const quotesCollection = await getCollection('react_30', 'quotes')
-    const quote = await getRandomQuote(quotesCollection)
-    res.json({ quote })
+    const randomNumber = Math.floor(Math.random() * 21)
+    const quotesObject = await Quotes.find({})
+    const quoteItem = quotesObject[0].quotes[randomNumber]
+    res.send(quoteItem)
   } catch (error) {
     console.error('Error fetching quotes:', error)
     res.status(500).json({ error: 'Internal Server Error' })

@@ -1,13 +1,16 @@
-import { Collection, MongoClient } from 'mongodb'
+import mongoose, { Connection } from 'mongoose'
 
-let mongoClient: MongoClient
-let mongoCollection: Collection
+let mongoConnection: Connection
 
-export async function connectToCluster(uri: string) {
+export async function connectToCluster(uri: string, database: string) {
   try {
-    mongoClient = new MongoClient(uri)
+    const fullUri = `${uri}/${database}`
     console.log('Connecting to MongoDB Atlas cluster...')
-    await mongoClient.connect()
+    await mongoose.connect(fullUri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    mongoConnection = mongoose.connection
     console.log('Successfully connected to MongoDB Atlas')
   } catch (error) {
     console.error('Connection to MongoDB Atlas failed', error)
@@ -20,12 +23,13 @@ export async function getCollection(database: string, collection: string) {
   if (!uri) {
     throw new Error('DB_CONNECTION_URL is not defined in environment variables')
   }
-  if (!mongoClient) {
-    await connectToCluster(uri)
+  if (!mongoConnection || !mongoConnection.readyState) {
+    await connectToCluster(uri, database)
   }
-  if (!mongoCollection) {
-    const db = mongoClient.db(database)
-    mongoCollection = db.collection(collection)
+
+  if (!mongoConnection.db) {
+    throw new Error('Failed to connect to the database.')
   }
-  return mongoCollection
+
+  return mongoConnection.db.collection(collection)
 }
