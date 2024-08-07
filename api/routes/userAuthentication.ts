@@ -1,7 +1,7 @@
 import express from 'express'
 const router = express.Router()
 
-// /user-authentication/register
+// /api/v1/user-authentication/register
 router.post('/register', async (req, res) => {
   try {
     const { username, password } = req.body
@@ -12,7 +12,7 @@ router.post('/register', async (req, res) => {
   }
 })
 
-// /user-authentication/login
+// /api/v1/user-authentication/login
 router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body

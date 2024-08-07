@@ -1,35 +1,13 @@
-import mongoose, { Connection } from 'mongoose'
+import mongoose from 'mongoose'
 
-let mongoConnection: Connection
-
-export async function connectToCluster(uri: string, database: string) {
+async function connectToMongoDB() {
   try {
-    const fullUri = `${uri}/${database}`
-    console.log('Connecting to MongoDB Atlas cluster...')
-    await mongoose.connect(fullUri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
-    mongoConnection = mongoose.connection
-    console.log('Successfully connected to MongoDB Atlas')
+    const conn = await mongoose.connect(process.env.DB_CONNECTION_URL!)
+    console.log(`Connected to MongoDB: ${conn.connection.host}`)
   } catch (error) {
-    console.error('Connection to MongoDB Atlas failed', error)
+    console.error('Error connecting to MongoDB:', error)
     process.exit(1)
   }
 }
 
-export async function getCollection(database: string, collection: string) {
-  const uri: string | undefined = process.env.CLUSTER_CONNECTION_URL
-  if (!uri) {
-    throw new Error('DB_CONNECTION_URL is not defined in environment variables')
-  }
-  if (!mongoConnection || !mongoConnection.readyState) {
-    await connectToCluster(uri, database)
-  }
-
-  if (!mongoConnection.db) {
-    throw new Error('Failed to connect to the database.')
-  }
-
-  return mongoConnection.db.collection(collection)
-}
+export default connectToMongoDB
