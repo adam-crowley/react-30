@@ -5,7 +5,8 @@ import cors from 'cors'
 
 import connectToMongoDB from './connection'
 import quotes from './routes/quotes'
-import userAuthentication from './routes/userAuthentication'
+import auth from './routes/auth'
+import posts from './routes/posts'
 
 const server = express()
 const port = process.env.PORT || 3000
@@ -19,7 +20,9 @@ server.use(express.json())
 server.use(express.static(join(__dirname, './public')))
 
 server.use('/api/v1/quotes', quotes)
-server.use('/api/v1/user-authentication', userAuthentication)
+
+server.use('/api/v1/user', auth)
+server.use('/api/v1/posts', posts)
 
 server.get('/', (req, res) => {
   res.send('Hello world!')
