@@ -18,7 +18,7 @@ function App() {
         <div className="page__content">
           <Routes>
             <Route
-              path="/user-authentication"
+              path="/user-authentication/*"
               element={<UserAuthentication />}
             />
             <Route path="/quote-generator" element={<QuoteGenerator />} />

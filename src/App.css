@@ -571,4 +571,8 @@ User Authentication
   color: var(--white);
 }
 
+.user-auth h3 {
+  color: var(--white);
+}
+
 /*# sourceMappingURL=App.css.map */
