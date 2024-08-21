@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 
 import Header from './Header'
 import LoginForm from './LoginForm'
@@ -41,7 +41,14 @@ function UserAuthentication() {
               <LoginForm showError={setErrorMessage} updateTitle={setTitle} />
             }
           />
-          <PrivateRoute path="/home" element={<Home />} />
+          <Route
+            path="/home"
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          />
         </Routes>
         <AlertComponent
           errorMessage={errorMessage}
