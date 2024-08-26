@@ -22,7 +22,7 @@ function Home() {
   }, [])
 
   function redirectToLogin() {
-    navigate('/login')
+    navigate('/user-authentication/login')
   }
 
   return <div className="mt-2">Home page content</div>

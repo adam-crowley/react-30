@@ -56,7 +56,7 @@ function RegistrationForm(props) {
 
   const redirectToHome = () => {
     props.updateTitle('Home')
-    navigate('/home')
+    navigate('/user-authentication/home')
   }
 
   const redirectToLogin = () => {

@@ -11,12 +11,12 @@ function Header(props) {
   }
 
   let title = capitalize(location.pathname.substring(1))
-  if (location.pathname === '/') {
+  if (location.pathname === '/user-authentication') {
     title = 'Welcome'
   }
 
   function renderLogout() {
-    if (location.pathname === '/home') {
+    if (location.pathname === '/user-authentication/home') {
       return (
         <button className="" onClick={handleLogout}>
           Logout
@@ -27,7 +27,7 @@ function Header(props) {
 
   function handleLogout() {
     localStorage.removeItem(ACCESS_TOKEN_NAME)
-    navigate('/login')
+    navigate('/user-authentication/login')
   }
 
   return (
