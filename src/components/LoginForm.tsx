@@ -58,7 +58,7 @@ function LoginForm(props) {
   }
 
   return (
-    <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
+    <>
       <form className="form">
         <div className="form__group">
           <label>Email address</label>
@@ -100,17 +100,13 @@ function LoginForm(props) {
       >
         {state.successMessage}
       </div>
-      <div className="registerMessage">
+      <div className="user-auth__message">
         <span>Don't have an account? </span>
-        <Link
-          to="/user-authentication/register"
-          className="loginText"
-          onClick={redirectToRegister}
-        >
+        <Link to="/user-authentication/register" onClick={redirectToRegister}>
           Register
         </Link>
       </div>
-    </div>
+    </>
   )
 }
 

@@ -120,7 +120,7 @@ p {
   }
 }
 .form__group {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 /* ==========================================================================
@@ -523,4 +523,43 @@ p.user-feed__name {
 
    .user-auth {
     color: var(--white);
+    width: 30rem;
+   }
+   .user-auth a {
+    color: var(--yellow);
+    text-decoration: none;
+    font-weight: bold;
+   }
+   .user-auth h2 {
+    text-align: center;
+   }
+   .user-auth button {
+    margin: 0rem 0;
+   }
+   .user-auth__navbar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--light-blue);
+    padding: 1rem 2rem;
+   }
+   .user-auth__title {
+    font-weight: bold;
+    margin:0;
+   }
+   .user-auth__button {
+    position: absolute;
+    right: 1rem;
+   }
+   .user-auth__container {
+    padding: 2rem;
+    background-color: var(--dark-grey);
+   }
+   .user-auth__message {
+    margin: 1.5rem 0 0;
+   }
+   .user-auth__alert {
+    color: var(--yellow);
+    margin: 1.5rem 0 0;
+    // background-color: var(--yellow);
    }

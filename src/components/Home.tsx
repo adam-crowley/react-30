@@ -25,7 +25,7 @@ function Home() {
     navigate('/user-authentication/login')
   }
 
-  return <div className="mt-2">Home page content</div>
+  return <p>You are now logged in!</p>
 }
 
 export default Home

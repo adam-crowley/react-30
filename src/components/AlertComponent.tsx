@@ -19,9 +19,8 @@ function AlertComponent(props) {
 
   return (
     <div
-      className={'alert alert-danger alert-dismissable mt-4'}
+      className="user-auth__alert"
       role="alert"
-      id="alertPopUp"
       style={{ display: modalDisplay }}
     >
       <div className="d-flex alertMessage">

@@ -18,7 +18,7 @@ function Header(props) {
   function renderLogout() {
     if (location.pathname === '/user-authentication/home') {
       return (
-        <button className="" onClick={handleLogout}>
+        <button className="user-auth__button" onClick={handleLogout}>
           Logout
         </button>
       )
@@ -32,10 +32,8 @@ function Header(props) {
 
   return (
     <nav className="user-auth__navbar">
-      <div className="">
-        <span className="">{props.title || title}</span>
-        {renderLogout()}
-      </div>
+      <h3 className="user-auth__title">{props.title || title}</h3>
+      {renderLogout()}
     </nav>
   )
 }
